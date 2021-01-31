@@ -1,101 +1,91 @@
-import React, {Fragment, useState } from 'react'
-import {contacts} from '../contacts'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useEffect, useState, useCallback, useRef } from 'react'
+import { contacts } from '../contacts'
 import Person from './Person';
-import { v4 as uuidv4 } from 'uuid';
-import AddPerson from './AddPerson';
+import NewPerson from './NewPerson';
 
 const PersonList = () => {
 
-    const [list, setList ] = useState(contacts)
-    const [person, setPerson] = useState([{
-        name: '',
-        company: ''
-    }]);
+    const [list, setList] = useState(contacts);
+    const [loading, setLoading] = useState(false)
+    const ref = useRef(false)
 
-    const [showModal, setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    useEffect(() => {
+        if (ref.current) {
+            ref.current(true)
+            // getLocations()
+            console.log("first");
+            return
+        }
 
+    }, [list])
+
+
+    // const getLocations = useCallback(async () => {
+    //     let tempList = list.map(async item => {
+    //         const res = await fetch(`http://api.positionstack.com/v1/forward?access_key=726ace11c73e107fc3be665c2b8ec986&query=${item.address}&limit=1`);
+    //         const results = await res.json();
+    //         let tempUser = { ...item, lat: results.data[0].latitude, lng: results.data[0].longitude };
+    //         console.log(tempUser);
+    //         return tempUser
+    //     })
+    //     console.log(tempList);
+    // }, [list])
+
+    const getLocationByAddress = useCallback(async (address) => {
+        const res = await fetch(`http://api.positionstack.com/v1/forward?access_key=726ace11c73e107fc3be665c2b8ec986&query=${address}&limit=1`);
+        const results = await res.json();
+        return { lat: results.data[0].latitude, lng: results.data[0].longitude };
+    })
+
+
+
+
+    /*===Add or edit a contact ===*/
+    const handleAdd = (person) => {
+        const newPerson = { ...person, id: new Date().getTime().toString() }
+        setList([...list, newPerson])
+    }
+
+    const updatePerson = (person, id) => {
+        let newList = list.map((item) => item.id === id ? {
+            ...item,
+            name: person.name,
+            company: person.company,
+            phone: person.phone,
+            address: person.address
+        } : item);
+
+        console.log("newList", newList);
+        setList(newList)
+    }
+
+    /*===Remove contact===*/
     const handleRemove = (id) => {
-        setList((oldPerson) => { 
+        setList((oldPerson) => {
             let templist = oldPerson.filter(item => item.id !== id)
-            
             return templist
         })
     };
 
-    // const handleChange = (id) => {
-    //     let templist = list.find(item =>  {
-    //         if(item.id === id){ 
-    //             const updatePeson = { ...list, name: item.name}
-    //             setList([...list, updatePeson])
-    //         }
-    // })
-  
-    // };
-
-    const handleChange = id  => { 
-        const newList = list.map((item) => {
-            if (item.id === id) {
-              const updatedItem = { 
-                ...item,
-                name: item.name,
-                isComplete: !item.isComplete,
-              }
-              return updatedItem;
-            }
-            return item;
-          });
-          setList(newList);
-    };  
-
-    const onChange = e => {
-        setPerson({ ...person, [e.target.name]: e.target.value });
-    };
-
-    const handleList = e => {
-        setList({ ...list, [e.target.name]: e.target.value });
-    };
-
-    const handleAdd = (e) => {
-        e.preventDefault();
-        if(person.name && person.company) {
-            const newPerson = {...person, id: uuidv4() }
-            setList([...list, newPerson])
-            setPerson({
-                name: '',
-                company: ''
-            })   
-            setShow(false) 
-        };
-    };
 
     return (
         <Fragment>
             <div className="row"> {
                 list && list.map(item => (
-                    <Person 
-                    key={item.id} 
-                    item={item} 
-                    onRemove={handleRemove} 
-                    handleChange={handleChange} 
-                    onChange={onChange}
-                    handleList={handleList}
+                    <Person
+                        key={item.id}
+                        {...item}
+                        onRemove={handleRemove}
+                        updatePerson={updatePerson}
                     />
                 ))
-            }        
+            }
             </div>
             <div className="row iconDiv">
-                    <AddPerson 
-                    {...person} 
-                    onChange={onChange} 
-                    onAdd={handleAdd} 
-                    handleChange={handleChange} 
-                    showModal={showModal} 
-                    handleShow={handleShow}
-                    handleClose={handleClose} />                   
-                </div>
-        </Fragment> 
+                <NewPerson mode={"add"} handleAdd={handleAdd} />
+            </div>
+        </Fragment>
     )
 };
 

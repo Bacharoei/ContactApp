@@ -1,0 +1,429 @@
+/* Common Styles */
+
+/* by default html assign to the body element margin  */
+body { 
+    margin: 0; /* margin is the space that goes around the outside of the element */
+    font-family: 'Dosis', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Dosis', sans-serif;
+}
+
+
+
+/* if we know how many elements that we're going to ahve for just a guaranteed  number then use gride  */
+
+/* if you want to have more a variable number of items kid of   */
+/* Common nav styles  */
+
+.nav-wrapper {
+    height: 190px;
+    background-color: #11122b; /* hex paramter */
+    color: #cbcbcb; /* referring to the text element  */
+    display: flex; /* making us flexbox container  */
+    justify-content: space-between; /* it tells the element inside how to behave  */
+    align-items: center; /* it tells how the element should be alinged vertically  */
+    /* padding: 100px; */
+    /* top right bottom left (clock view) */
+    /* padding: 60px 100px 60px 100px; */
+    /* top - bottom & right - left (clock view) */
+     padding: 60px 100px; /* padding is the white space inside of the element  */
+}
+
+.nav-wrapper > .left-column { 
+    display: flex;
+    align-items: center;   
+}
+
+.nav-icons {
+    margin-right: 15px;
+}
+
+/* em is sibling of rem they are more like percentages, it gives you double of the normal size  */
+.nav-icons i {
+    font-size: 2em; 
+    color: #858585;
+
+}
+
+.nav-wrapper > .left-column > .contact-hours-wrapper { 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;  /* define the padding & margin */
+
+}
+
+.contact-hours-wrapper > .hours { 
+    font-family: 'Ubuntu Condensed', sans-serif;
+    color: #858585;
+    font-size: 0.8em;
+}
+
+/* nav center-column  */
+
+.nav-wrapper > .center-column { 
+    display: grid;
+    grid-template-columns: 1fr; /* that's going to setup 2 divs that they are links wrapper and the img and logo get its own row and links its row  */
+    grid-gap: 42px;
+    width: 500px;
+}
+
+.nav-wrapper > .center-column > .banner-image {
+    display: flex;
+    justify-content: center;
+
+}
+
+.nav-wrapper > .center-column > .banner-image img {
+    width: 216px;
+    height: 100%;
+    transition: 0.5s;
+
+}
+
+.banner-image img:hover {
+    width: 216px;
+    height: 100%;
+    filter: brightness(60%);
+}
+
+
+.links-wrapper { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links-wrapper > .nav-link {
+    width: 70px;
+    text-align: center;
+}
+
+
+.links-wrapper > .nav-link a {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    color: #cdcdcd;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.links-wrapper > .nav-link a:hover {
+    color: #cea135;
+    letter-spacing: 2px;
+    
+
+}
+
+/*  nav right colunm style */
+
+.nav-wrapper > .right-column  {
+    display: flex;
+    align-items: center;
+ 
+}
+
+.nav-wrapper > .right-column > .address-wrapper {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-align: right;
+}
+ 
+.nav-wrapper > .right-column > .address-wrapper  a, .contact-icon a{
+    color: #858585;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: 0.5s;
+}
+
+.nav-wrapper > .right-column > .address-wrapper  a:hover, .contact-icon a:hover{
+    color: #cea135;
+}
+
+.nav-wrapper > .right-column > .contact-icon {
+    margin-left: 15px;
+    font-size: 2em;
+
+}
+
+
+/* Hero section styles */
+
+.hero-section { 
+    background-image: url('./fries-hero-bg.jpg');
+    padding: 100px;
+    height: 300px;
+    background-attachment: fixed; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-section > .top-heading { 
+    background-color: #11122b;
+    color: #cbcbcb;
+    width: 290px;
+    border-radius: 2px;
+    padding: 1px 20px;
+}
+
+
+
+.hero-section > .bottom-heading { 
+    background-color: #cea135;
+    color: #11122b;
+    width: 107px;
+    border-radius: 2px;
+    padding: 1px 20px;
+    margin-top: 15px;
+}
+
+/* features section styles */
+
+.features-section { 
+    background-image: url('./fries-multiply-bg.jpg');
+    height: 400px;
+    background-color: #cea135;
+    background-repeat: repeat;
+    border-top: 10px solid white;
+    color: #11122b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    box-shadow: inset 0px -26px 79px -8px rgba(0, 0, 0, 0.58);
+}
+
+.features-section > .columns-wrapper { 
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.columns-wrapper > .column { 
+    padding: 20px;
+    margin: 42px;
+    text-align: center;
+    border-bottom: 5px solid transparent;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.columns-wrapper > .column:hover { 
+
+    border-bottom: 5px solid #11122b;
+ 
+}
+
+.columns-wrapper > .column :nth-child(1) { 
+    font-size: 3em;
+ 
+}
+
+.columns-wrapper > .column :nth-child(2) { 
+    font-size: 1.5em;
+    font-weight: 900;
+    height: 50px;
+    transition: 1s;
+}
+
+.columns-wrapper > .column :nth-child(2):hover { 
+    letter-spacing: 1px;
+
+}
+
+.columns-wrapper > .column :nth-child(3) { 
+    letter-spacing: 2px;
+    overflow: hidden;
+
+}
+
+/* footer */
+
+.footer {
+    background-color: #11122b;
+    color: #cbcbcb;
+    font-family: "Ubuntu Condensed", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+    margin-top: -4px;
+}
+
+.footer > .logo-footer img {
+    width: 180px;
+    height: 100%;
+    /* filter: brightness(50%); */
+    opacity: 0.5;
+}
+
+.footer > .footer-phone-hours span {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1em;
+    letter-spacing: 2px;
+}
+
+.footer > .footer-phone-hours > .hours {
+    font-size: 0.8em;
+    color: #cea135;
+    text-transform: uppercase;
+}
+
+.footer > .links-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 400px;
+}
+
+.footer > .social-media-icons-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer > .social-media-icons-wrapper a {
+    font-size: 1.5em;
+    color: #cbcbcb;
+    transition: 0.5s;
+}
+
+.footer > .social-media-icons-wrapper a:hover {
+    color: #cea135;
+}
+
+.footer > .copyright-wrapper {
+    margin-bottom: 42px;
+    font-size: 0.7em;
+    color: #858585;
+}
+
+
+/* relative reson  */
+.skewed-header { 
+    position: relative; 
+    height: 400px;
+    overflow: hidden;
+
+}
+
+.header-bg { 
+    background-image: url('../../images/background1.jpg');
+    background-attachment: fixed; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: 100%;
+    transform: skewY(-4deg);
+    transform-origin: top left;
+    filter: brightness(50%);
+}
+
+.skewed-header-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+ .skewed-header-content {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.heading-wrapper {
+    background-color: #cea135;
+    color: #0f2658;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.5s;
+    font-weight: 900;
+    font-size: 1.5em;
+    font-family: 'Dosis', sans-serif;
+}
+
+.heading-wrapper:hover{
+    color: white;
+    letter-spacing: 2px;
+    filter: brightness(60%);
+}
+
+.heading-wrapper img{
+    width: 216px;
+    height: 100%;
+    transition: 0.5s;
+}
+
+
+/* Page container */
+
+.page-container { 
+    display: flex;
+    justify-content: center;
+}
+
+ .content-wrapper { 
+    width: 1000px;
+}
+
+ .content-wrapper > img {
+    width: 350px;
+    margin: 23px 40px 20px 0px;
+    float: left;
+    border: 2px solid #cea135;
+}
+
+.content-wrapper p {
+    letter-spacing: 1px;
+    line-height: 30px;
+}
+
+
+/*============  MEDIA QUERIES  =============*/
+    
+    /* Medium Laptop Screens */
+@media only screen and (max-width: 900px)   { 
+    .links-wrapper {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .nav-link {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.5em;
+        width: 100%;
+    }
+
+    .skewed-header-content {
+        flex-direction: column;
+    }
+
+    .header-bg {
+        background-size: 100%;
+        background-position:top;
+        background-attachment:local; 
+        background-position:top ;
+        background-repeat:no-repeat;
+
+    }
+
+
+}
